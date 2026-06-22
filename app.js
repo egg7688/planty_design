@@ -6,7 +6,6 @@ const elements = {
   hourglassSandTopRidge: document.querySelector("#hourglass-sand-top-ridge"),
   hourglassSandBottom: document.querySelector("#hourglass-sand-bottom"),
   hourglassSandRidge: document.querySelector("#hourglass-sand-ridge"),
-  hourglassStream: document.querySelector("#hourglass-stream"),
   startButton: document.querySelector("#start-button"),
   pauseButton: document.querySelector("#pause-button"),
   resetButton: document.querySelector("#reset-button"),
@@ -199,8 +198,6 @@ function renderHourglass(progress) {
       ? "M120 248L120 248"
       : `M${pileLeftX + 12} ${pileSideY - 1} C${120 - 40} ${ridgeY + 8} ${120 - 15} ${pilePeakY + 4} 120 ${pilePeakY} C${120 + 15} ${pilePeakY + 4} ${120 + 40} ${ridgeY + 8} ${pileRightX - 12} ${pileSideY - 1}`,
   );
-  elements.hourglassStream.setAttribute("y2", Math.max(pilePeakY, 148).toString());
-  elements.hourglassStream.style.opacity = progress >= 100 ? "0" : "1";
   elements.hourglassTimer.classList.toggle("is-running", Boolean(timerId) && progress < 100);
 }
 

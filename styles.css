@@ -312,16 +312,6 @@ h2 {
   transition: d 0.25s ease;
 }
 
-.hourglass-stream {
-  stroke: var(--sand);
-  stroke-width: 2.4;
-  stroke-linecap: round;
-  filter: drop-shadow(0 0 2px rgba(176, 159, 4, 0.48));
-  transition:
-    opacity 0.2s ease,
-    y2 0.25s ease;
-}
-
 .hourglass-grains {
   opacity: 0;
 }
@@ -337,41 +327,60 @@ h2 {
   opacity: 1;
 }
 
-.hourglass-timer.is-running .hourglass-stream {
-  animation: sand-stream-pulse 0.45s linear infinite;
-}
-
 .hourglass-timer.is-running .hourglass-grain {
   animation: sand-grain-fall 1.2s cubic-bezier(0.35, 0, 0.65, 1) infinite;
 }
 
 .hourglass-timer.is-running .grain-two {
-  animation-delay: 0.16s;
+  animation-delay: 0.12s;
   animation-name: sand-grain-fall-left;
   animation-duration: 1.05s;
 }
 
 .hourglass-timer.is-running .grain-three {
-  animation-delay: 0.32s;
+  animation-delay: 0.24s;
   animation-name: sand-grain-fall-right;
   animation-duration: 1.15s;
 }
 
 .hourglass-timer.is-running .grain-four {
-  animation-delay: 0.5s;
+  animation-delay: 0.36s;
   animation-name: sand-grain-fall-left;
   animation-duration: 1.28s;
 }
 
 .hourglass-timer.is-running .grain-five {
-  animation-delay: 0.68s;
+  animation-delay: 0.48s;
   animation-name: sand-grain-fall-right;
   animation-duration: 1.02s;
 }
 
 .hourglass-timer.is-running .grain-six {
-  animation-delay: 0.84s;
+  animation-delay: 0.6s;
   animation-duration: 1.32s;
+}
+
+.hourglass-timer.is-running .grain-seven {
+  animation-delay: 0.72s;
+  animation-name: sand-grain-fall-left;
+  animation-duration: 1.18s;
+}
+
+.hourglass-timer.is-running .grain-eight {
+  animation-delay: 0.84s;
+  animation-name: sand-grain-fall-right;
+  animation-duration: 1.22s;
+}
+
+.hourglass-timer.is-running .grain-nine {
+  animation-delay: 0.96s;
+  animation-duration: 1.08s;
+}
+
+.hourglass-timer.is-running .grain-ten {
+  animation-delay: 1.08s;
+  animation-name: sand-grain-fall-right;
+  animation-duration: 1.3s;
 }
 
 @keyframes sand-grain-fall {
@@ -435,19 +444,6 @@ h2 {
   100% {
     opacity: 0;
     transform: translate(16px, 100px) scale(1);
-  }
-}
-
-@keyframes sand-stream-pulse {
-  0%,
-  100% {
-    stroke-width: 3;
-    opacity: 0.72;
-  }
-
-  50% {
-    stroke-width: 3.8;
-    opacity: 1;
   }
 }
 

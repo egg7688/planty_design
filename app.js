@@ -167,13 +167,13 @@ function renderHourglass(progress) {
   const pileProgress = progress / 100;
   const topSurfaceLeftY = 50 + (HOURGLASS_SAND_HEIGHT - topHeight) * 0.78;
   const topSurfaceRightY = topSurfaceLeftY + 8;
-  const pileBaseHalfWidth = 12 + 52 * pileProgress;
+  const pileBaseHalfWidth = 18 + 55 * pileProgress;
   const pilePeakY = 248 - bottomHeight * 0.78;
   const pileLeftX = 120 - pileBaseHalfWidth;
   const pileRightX = 120 + pileBaseHalfWidth;
   const ridgeY = pilePeakY + Math.max(bottomHeight * 0.18, 1);
-  const pileShoulderY = 248 - bottomHeight * 0.34;
-  const pileSideY = 246 - bottomHeight * 0.12;
+  const pileShoulderY = 250 - bottomHeight * 0.3;
+  const pileSideY = 247 - bottomHeight * 0.08;
 
   elements.hourglassSandTop.setAttribute(
     "d",
@@ -191,13 +191,13 @@ function renderHourglass(progress) {
     "d",
     bottomHeight < 1
       ? "M120 248L120 248L120 248Z"
-      : `M${pileLeftX} ${pileSideY} C${pileLeftX - 8} ${pileShoulderY} ${120 - 34} ${ridgeY} 120 ${pilePeakY} C${120 + 34} ${ridgeY} ${pileRightX + 8} ${pileShoulderY} ${pileRightX} ${pileSideY} C${pileRightX - 14} 252 ${pileLeftX + 14} 252 ${pileLeftX} ${pileSideY} Z`,
+      : `M${pileLeftX} ${pileSideY} C${pileLeftX - 14} ${pileShoulderY} ${120 - 46} ${ridgeY + 3} 120 ${pilePeakY} C${120 + 46} ${ridgeY + 3} ${pileRightX + 14} ${pileShoulderY} ${pileRightX} ${pileSideY} C${pileRightX - 10} 256 ${pileLeftX + 10} 256 ${pileLeftX} ${pileSideY} Z`,
   );
   elements.hourglassSandRidge.setAttribute(
     "d",
     bottomHeight < 1
       ? "M120 248L120 248"
-      : `M${pileLeftX + 10} ${pileSideY - 2} C${120 - 28} ${ridgeY + 6} ${120 - 12} ${pilePeakY + 3} 120 ${pilePeakY} C${120 + 12} ${pilePeakY + 3} ${120 + 28} ${ridgeY + 6} ${pileRightX - 10} ${pileSideY - 2}`,
+      : `M${pileLeftX + 12} ${pileSideY - 1} C${120 - 40} ${ridgeY + 8} ${120 - 15} ${pilePeakY + 4} 120 ${pilePeakY} C${120 + 15} ${pilePeakY + 4} ${120 + 40} ${ridgeY + 8} ${pileRightX - 12} ${pileSideY - 1}`,
   );
   elements.hourglassStream.setAttribute("y2", Math.max(pilePeakY, 148).toString());
   elements.hourglassStream.style.opacity = progress >= 100 ? "0" : "1";

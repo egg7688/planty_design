@@ -1,4 +1,4 @@
-const CACHE_NAME = "time-control-v17";
+const CACHE_NAME = "time-control-v18";
 const ASSETS = ["./", "index.html", "styles.css", "app.js", "manifest.json", "icon.svg"];
 
 self.addEventListener("install", (event) => {

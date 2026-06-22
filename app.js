@@ -23,6 +23,11 @@ const elements = {
   contentCheckButton: document.querySelector("#content-check-button"),
   contentClearButton: document.querySelector("#content-clear-button"),
   contentCheckResult: document.querySelector("#content-check-result"),
+  researchKeywordInput: document.querySelector("#research-keyword-input"),
+  researchEmailInput: document.querySelector("#research-email-input"),
+  researchReportButton: document.querySelector("#research-report-button"),
+  researchClearButton: document.querySelector("#research-clear-button"),
+  researchReportResult: document.querySelector("#research-report-result"),
   calendarMonth: document.querySelector("#calendar-month"),
   calendarGrid: document.querySelector("#calendar-grid"),
   prevMonthButton: document.querySelector("#prev-month-button"),
@@ -72,6 +77,8 @@ elements.internetStopButton.addEventListener("click", stopInternetTimer);
 elements.internetResetButton.addEventListener("click", resetInternetToday);
 elements.contentCheckButton.addEventListener("click", checkContentSafety);
 elements.contentClearButton.addEventListener("click", clearContentCheck);
+elements.researchReportButton.addEventListener("click", createResearchReport);
+elements.researchClearButton.addEventListener("click", clearResearchReport);
 elements.prevMonthButton.addEventListener("click", () => changeCalendarMonth(-1));
 elements.nextMonthButton.addEventListener("click", () => changeCalendarMonth(1));
 
@@ -354,6 +361,54 @@ function clearContentCheck() {
 function setContentCheckResult(message, state) {
   elements.contentCheckResult.textContent = message;
   elements.contentCheckResult.className = `guard-result is-${state}`;
+}
+
+async function createResearchReport() {
+  const keyword = elements.researchKeywordInput.value.trim();
+  const email = elements.researchEmailInput.value.trim();
+
+  if (!keyword || !email) {
+    setResearchReportResult("키워드와 받을 이메일을 모두 입력하세요.", "neutral");
+    return;
+  }
+
+  elements.researchReportButton.disabled = true;
+  setResearchReportResult("학술 자료를 검색하고 보고서를 생성하는 중입니다.", "checking");
+
+  try {
+    const response = await fetch("/api/research-report", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ keyword, email }),
+    });
+    const data = await response.json();
+
+    if (!response.ok) {
+      throw new Error(data.error ?? "보고서 생성 또는 이메일 발송에 실패했습니다.");
+    }
+
+    setResearchReportResult(
+      `발송 완료: ${data.keyword} 보고서를 ${data.email}로 보냈습니다. DBpia ${data.sources.dbpia}건, 구글 학술검색 ${data.sources.googleScholar}건을 반영했습니다.`,
+      "safe",
+    );
+  } catch (error) {
+    setResearchReportResult(error.message, "blocked");
+  } finally {
+    elements.researchReportButton.disabled = false;
+  }
+}
+
+function clearResearchReport() {
+  elements.researchKeywordInput.value = "";
+  elements.researchEmailInput.value = "";
+  setResearchReportResult("키워드와 이메일을 입력하면 보고서를 생성할 수 있습니다.", "neutral");
+}
+
+function setResearchReportResult(message, state) {
+  elements.researchReportResult.textContent = message;
+  elements.researchReportResult.className = `guard-result is-${state}`;
 }
 
 function startInternetTimer() {

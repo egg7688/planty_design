@@ -164,6 +164,7 @@ h2 {
 .settings-card,
 .internet-card,
 .content-guard-card,
+.research-report-card,
 .calendar-card,
 .history-card {
   margin-top: 24px;
@@ -542,6 +543,7 @@ h2 {
 
 .settings-card h2,
 .internet-card h2,
+.research-report-card h2,
 .calendar-card h2,
 .history-card h2 {
   margin-bottom: 16px;
@@ -609,7 +611,8 @@ input[type="number"] {
   font-weight: 300;
 }
 
-.guard-input-label textarea {
+.guard-input-label textarea,
+.guard-input-label input {
   width: 100%;
   margin-top: 8px;
   padding: 14px 16px;
@@ -623,9 +626,27 @@ input[type="number"] {
   resize: vertical;
 }
 
-.guard-input-label textarea:focus {
+.guard-input-label input {
+  min-height: 48px;
+  resize: none;
+}
+
+.guard-input-label textarea:focus,
+.guard-input-label input:focus {
   border-color: var(--ink);
   outline: none;
+}
+
+.report-form-grid {
+  display: grid;
+  gap: 12px;
+  margin-top: 18px;
+}
+
+@media (min-width: 640px) {
+  .report-form-grid {
+    grid-template-columns: 1fr 1fr;
+  }
 }
 
 .guard-result {

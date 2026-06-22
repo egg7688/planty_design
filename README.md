@@ -10,6 +10,7 @@
 - 하루 인터넷 사용 가능 시간 설정
 - 인터넷 사용 시작/중지와 남은 시간 추적
 - Gemini 2.5 Flash 기반 청소년 유해 콘텐츠 검사
+- 키워드 기반 학술 보고서 생성 및 이메일 발송
 - 월별 캘린더에서 날짜별 집중 시간 확인
 - 오늘 완료 기록 저장
 - 알림과 진동으로 완료 안내
@@ -36,6 +37,18 @@ GEMINI_API_KEY=발급받은_Gemini_API_Key
 ```
 
 브라우저에는 API 키가 전달되지 않고, `/api/moderate` 함수에서만 사용됩니다.
+
+학술 보고서 생성과 이메일 발송을 사용하려면 아래 값도 추가하세요.
+
+```text
+DBPIA_API_URL=DBpia_검색_API_URL
+DBPIA_API_KEY=DBpia_API_Key
+SERPAPI_API_KEY=Google_Scholar_검색용_SerpAPI_Key
+RESEND_API_KEY=Resend_API_Key
+REPORT_FROM_EMAIL=verified@example.com
+```
+
+`DBPIA_API_KEY`는 사용하는 DBpia API 방식에 따라 선택 사항일 수 있습니다. 구글 학술검색은 공식 직접 API가 없어 `SERPAPI_API_KEY` 또는 호환되는 Google Scholar 검색 API 키를 서버에서 사용합니다.
 
 ## 참고
 

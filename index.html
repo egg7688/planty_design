@@ -16,6 +16,7 @@
         <a href="#timer-title">집중</a>
         <a href="#internet-title">인터넷</a>
         <a href="#content-guard-title">차단</a>
+        <a href="#research-report-title">보고서</a>
         <a href="#calendar-title">달력</a>
         <a href="#history-title">기록</a>
       </nav>
@@ -213,6 +214,54 @@
 
         <div class="guard-result is-neutral" id="content-check-result" role="status">
           검사할 내용을 입력하면 결과가 표시됩니다.
+        </div>
+      </section>
+
+      <section class="research-report-card" aria-labelledby="research-report-title">
+        <div class="timer-header">
+          <div>
+            <p class="phase-label">학술 보고서</p>
+            <h2 id="research-report-title">키워드 기반 보고서 이메일 발송</h2>
+          </div>
+          <span class="guard-model-badge">DBpia + Google Scholar</span>
+        </div>
+
+        <p class="helper-text guard-helper">
+          연구 키워드와 받을 이메일을 입력하면 DBpia와 구글 학술검색 결과를 바탕으로
+          요약 보고서를 생성해 발송합니다.
+        </p>
+
+        <div class="report-form-grid">
+          <label class="guard-input-label" for="research-keyword-input">
+            키워드
+            <input
+              id="research-keyword-input"
+              type="text"
+              placeholder="예: 청소년 스마트폰 중독"
+            />
+          </label>
+
+          <label class="guard-input-label" for="research-email-input">
+            받을 이메일
+            <input
+              id="research-email-input"
+              type="email"
+              placeholder="name@example.com"
+            />
+          </label>
+        </div>
+
+        <div class="controls">
+          <button class="primary-button" id="research-report-button" type="button">
+            보고서 생성 및 발송
+          </button>
+          <button class="secondary-button" id="research-clear-button" type="button">
+            지우기
+          </button>
+        </div>
+
+        <div class="guard-result is-neutral" id="research-report-result" role="status">
+          키워드와 이메일을 입력하면 보고서를 생성할 수 있습니다.
         </div>
       </section>
 

@@ -1,4 +1,4 @@
-const { createAcademicReport } = require("../lib/report-service");
+const { createPremiumSession } = require("../lib/report-service");
 
 module.exports = async function handler(req, res) {
   if (req.method !== "POST") {
@@ -7,17 +7,16 @@ module.exports = async function handler(req, res) {
   }
 
   try {
-    const payload = await createAcademicReport({
-      keyword: req.body?.keyword,
+    const session = await createPremiumSession({
       email: req.body?.email,
-      authorization: req.headers.authorization
+      accessCode: req.body?.accessCode
     });
 
-    return res.status(200).json(payload);
+    return res.status(200).json(session);
   } catch (error) {
     console.error(error);
     return res.status(error.status || 500).json({
-      message: error.message || "보고서를 생성하는 중 오류가 발생했습니다."
+      message: error.message || "유료 로그인 중 오류가 발생했습니다."
     });
   }
 };

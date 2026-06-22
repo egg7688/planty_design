@@ -58,6 +58,11 @@ h1 {
   line-height: 1.7;
 }
 
+.description.small {
+  margin-bottom: 0;
+  font-size: 0.98rem;
+}
+
 .panel,
 .report {
   border: 1px solid rgba(107, 126, 172, 0.22);
@@ -68,7 +73,13 @@ h1 {
 }
 
 .panel {
+  margin-bottom: 18px;
   padding: 24px;
+}
+
+.auth-panel {
+  display: grid;
+  gap: 22px;
 }
 
 .form {
@@ -149,6 +160,16 @@ button:disabled {
   margin-bottom: 12px;
   font-size: clamp(1.6rem, 3vw, 2.4rem);
   letter-spacing: -0.035em;
+}
+
+.summary {
+  margin-bottom: 18px;
+  color: #4a5873;
+  line-height: 1.72;
+}
+
+.summary p {
+  margin-bottom: 12px;
 }
 
 .stats,

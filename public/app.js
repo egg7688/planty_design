@@ -1,10 +1,60 @@
+const loginForm = document.querySelector("#login-form");
+const loginStatusEl = document.querySelector("#login-status");
+const loginButton = document.querySelector("#login-button");
 const form = document.querySelector("#report-form");
 const statusEl = document.querySelector("#status");
 const reportEl = document.querySelector("#report");
 const submitButton = document.querySelector("#submit-button");
 
+const session = loadSession();
+if (session?.token) {
+  unlockReportForm(session.user);
+}
+
+loginForm.addEventListener("submit", async (event) => {
+  event.preventDefault();
+
+  const formData = new FormData(loginForm);
+  const payload = {
+    email: formData.get("email"),
+    accessCode: formData.get("accessCode")
+  };
+
+  setLoginLoading(true);
+  setLoginStatus("유료 접근 권한을 확인하는 중입니다...");
+
+  try {
+    const response = await fetch("/api/login", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload)
+    });
+
+    const data = await response.json();
+    if (!response.ok) {
+      throw new Error(data.message || "유료 로그인에 실패했습니다.");
+    }
+
+    localStorage.setItem("premiumSession", JSON.stringify(data));
+    unlockReportForm(data.user);
+    setLoginStatus(`${data.user.email} 계정으로 유료 로그인이 완료되었습니다.`);
+  } catch (error) {
+    localStorage.removeItem("premiumSession");
+    submitButton.disabled = true;
+    setLoginStatus(error.message, true);
+  } finally {
+    setLoginLoading(false);
+  }
+});
+
 form.addEventListener("submit", async (event) => {
   event.preventDefault();
+
+  const currentSession = loadSession();
+  if (!currentSession?.token) {
+    setStatus("유료 로그인 후 보고서를 생성할 수 있습니다.", true);
+    return;
+  }
 
   const formData = new FormData(form);
   const payload = {
@@ -20,7 +70,10 @@ form.addEventListener("submit", async (event) => {
   try {
     const response = await fetch("/api/report", {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${currentSession.token}`
+      },
       body: JSON.stringify(payload)
     });
 
@@ -58,7 +111,7 @@ function renderReport(report) {
     <div class="report-header">
       <p class="eyebrow">생성 완료</p>
       <h2>${escapeHtml(report.title)}</h2>
-      <p>${escapeHtml(report.summary)}</p>
+      <div class="summary">${formatText(report.summary)}</div>
       <div class="stats">
         <span>DBpia ${report.stats.dbpiaCount}건</span>
         <span>Google Scholar ${report.stats.googleScholarCount}건</span>
@@ -100,9 +153,42 @@ function setLoading(isLoading) {
   submitButton.textContent = isLoading ? "생성 중..." : "보고서 생성 및 발송";
 }
 
+function setLoginLoading(isLoading) {
+  loginButton.disabled = isLoading;
+  loginButton.textContent = isLoading ? "로그인 중..." : "유료 로그인";
+}
+
 function setStatus(message, isError = false) {
   statusEl.textContent = message;
   statusEl.classList.toggle("error", isError);
+}
+
+function setLoginStatus(message, isError = false) {
+  loginStatusEl.textContent = message;
+  loginStatusEl.classList.toggle("error", isError);
+}
+
+function unlockReportForm(user) {
+  submitButton.disabled = false;
+  const emailInput = document.querySelector("#email");
+  if (user?.email && !emailInput.value) {
+    emailInput.value = user.email;
+  }
+}
+
+function loadSession() {
+  try {
+    return JSON.parse(localStorage.getItem("premiumSession"));
+  } catch {
+    return null;
+  }
+}
+
+function formatText(value) {
+  return escapeHtml(value)
+    .split(/\n{2,}/)
+    .map((paragraph) => `<p>${paragraph.replaceAll("\n", "<br>")}</p>`)
+    .join("");
 }
 
 function escapeHtml(value) {

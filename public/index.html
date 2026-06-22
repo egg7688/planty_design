@@ -10,11 +10,37 @@
     <main class="page">
       <section class="hero">
         <p class="eyebrow">DBpia + Google Scholar</p>
-        <h1>키워드만 입력하면 학술 검색 보고서를 이메일로 보냅니다.</h1>
+        <h1>유료 로그인 후 학술 검색 보고서를 생성합니다.</h1>
         <p class="description">
-          DBpia OpenAPI와 Google Scholar 호환 API를 활용해 논문 검색 결과를 모으고,
-          핵심 요약과 출처 목록을 포함한 보고서를 생성합니다.
+          유료 접근 권한을 확인한 뒤 DBpia OpenAPI와 Google Scholar 호환 API에서 검색 결과를 모으고,
+          AI 요약 또는 규칙형 요약으로 레포트를 생성해 이메일로 발송합니다.
         </p>
+      </section>
+
+      <section class="panel auth-panel">
+        <div>
+          <p class="eyebrow">Premium Login</p>
+          <h2>유료 사용자 로그인</h2>
+          <p class="description small">
+            DBpia 유료 원문을 우회하지 않습니다. 서버에 설정된 공식 API 키와 앱의 유료 접근 권한으로 검색/요약 기능을 제공합니다.
+          </p>
+        </div>
+
+        <form id="login-form" class="form">
+          <label>
+            로그인 이메일
+            <input id="login-email" name="email" type="email" placeholder="name@example.com" required />
+          </label>
+
+          <label>
+            유료 접근 코드
+            <input id="access-code" name="accessCode" type="password" placeholder="발급받은 코드" required />
+          </label>
+
+          <button id="login-button" type="submit">유료 로그인</button>
+        </form>
+
+        <p id="login-status" class="status" aria-live="polite"></p>
       </section>
 
       <section class="panel">
@@ -29,7 +55,7 @@
             <input id="email" name="email" type="email" placeholder="name@example.com" required />
           </label>
 
-          <button id="submit-button" type="submit">보고서 생성 및 발송</button>
+          <button id="submit-button" type="submit" disabled>보고서 생성 및 발송</button>
         </form>
 
         <p id="status" class="status" aria-live="polite"></p>

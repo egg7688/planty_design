@@ -19,6 +19,10 @@ const elements = {
   internetStopButton: document.querySelector("#internet-stop-button"),
   internetResetButton: document.querySelector("#internet-reset-button"),
   internetStatus: document.querySelector("#internet-status"),
+  contentCheckInput: document.querySelector("#content-check-input"),
+  contentCheckButton: document.querySelector("#content-check-button"),
+  contentClearButton: document.querySelector("#content-clear-button"),
+  contentCheckResult: document.querySelector("#content-check-result"),
   calendarMonth: document.querySelector("#calendar-month"),
   calendarGrid: document.querySelector("#calendar-grid"),
   prevMonthButton: document.querySelector("#prev-month-button"),
@@ -66,6 +70,8 @@ elements.internetStartButton.addEventListener("click", async () => {
 });
 elements.internetStopButton.addEventListener("click", stopInternetTimer);
 elements.internetResetButton.addEventListener("click", resetInternetToday);
+elements.contentCheckButton.addEventListener("click", checkContentSafety);
+elements.contentClearButton.addEventListener("click", clearContentCheck);
 elements.prevMonthButton.addEventListener("click", () => changeCalendarMonth(-1));
 elements.nextMonthButton.addEventListener("click", () => changeCalendarMonth(1));
 
@@ -284,6 +290,54 @@ function loadHistory() {
   } catch {
     return [];
   }
+}
+
+async function checkContentSafety() {
+  const text = elements.contentCheckInput.value.trim();
+
+  if (!text) {
+    setContentCheckResult("검사할 내용을 먼저 입력하세요.", "neutral");
+    return;
+  }
+
+  elements.contentCheckButton.disabled = true;
+  setContentCheckResult("Gemini 2.5 Flash로 유해 여부를 검사 중입니다.", "checking");
+
+  try {
+    const response = await fetch("/api/moderate", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ text }),
+    });
+    const data = await response.json();
+
+    if (!response.ok) {
+      throw new Error(data.error ?? "콘텐츠 검사에 실패했습니다.");
+    }
+
+    if (data.blocked) {
+      setContentCheckResult(`차단됨: ${data.reason}`, "blocked");
+      return;
+    }
+
+    setContentCheckResult(`허용됨: ${data.reason}`, "safe");
+  } catch (error) {
+    setContentCheckResult(error.message, "blocked");
+  } finally {
+    elements.contentCheckButton.disabled = false;
+  }
+}
+
+function clearContentCheck() {
+  elements.contentCheckInput.value = "";
+  setContentCheckResult("검사할 내용을 입력하면 결과가 표시됩니다.", "neutral");
+}
+
+function setContentCheckResult(message, state) {
+  elements.contentCheckResult.textContent = message;
+  elements.contentCheckResult.className = `guard-result is-${state}`;
 }
 
 function startInternetTimer() {

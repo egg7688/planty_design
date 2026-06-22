@@ -15,6 +15,7 @@
       <nav>
         <a href="#timer-title">집중</a>
         <a href="#internet-title">인터넷</a>
+        <a href="#content-guard-title">차단</a>
         <a href="#calendar-title">달력</a>
         <a href="#history-title">기록</a>
       </nav>
@@ -135,6 +136,42 @@
         <p class="helper-text" id="internet-status">
           인터넷을 사용할 때 시작을 누르면 오늘 남은 시간을 추적합니다.
         </p>
+      </section>
+
+      <section class="content-guard-card" aria-labelledby="content-guard-title">
+        <div class="timer-header">
+          <div>
+            <p class="phase-label">콘텐츠 보호</p>
+            <h2 id="content-guard-title">청소년 유해 콘텐츠 검사</h2>
+          </div>
+          <span class="guard-model-badge">Gemini 2.5 Flash</span>
+        </div>
+
+        <p class="helper-text guard-helper">
+          URL, 검색어, 페이지 제목, 문장을 입력하면 청소년에게 유해한 콘텐츠인지 검사합니다.
+        </p>
+
+        <label class="guard-input-label" for="content-check-input">
+          검사할 내용
+          <textarea
+            id="content-check-input"
+            rows="4"
+            placeholder="예: 사이트 주소, 영상 제목, 검색어를 입력하세요"
+          ></textarea>
+        </label>
+
+        <div class="controls">
+          <button class="primary-button" id="content-check-button" type="button">
+            유해 여부 검사
+          </button>
+          <button class="secondary-button" id="content-clear-button" type="button">
+            지우기
+          </button>
+        </div>
+
+        <div class="guard-result is-neutral" id="content-check-result" role="status">
+          검사할 내용을 입력하면 결과가 표시됩니다.
+        </div>
       </section>
 
       <section class="calendar-card" aria-labelledby="calendar-title">

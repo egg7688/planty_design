@@ -163,6 +163,7 @@ h2 {
 .timer-card,
 .settings-card,
 .internet-card,
+.content-guard-card,
 .calendar-card,
 .history-card {
   margin-top: 24px;
@@ -512,6 +513,80 @@ input[type="number"] {
 
 .input-row:focus-within {
   border-color: var(--ink);
+}
+
+.guard-model-badge {
+  display: inline-flex;
+  min-height: 32px;
+  align-items: center;
+  border: 1px solid var(--hairline-strong);
+  padding: 7px 10px;
+  color: var(--muted);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.guard-helper {
+  margin-top: 8px;
+  text-align: left;
+}
+
+.guard-input-label {
+  display: block;
+  margin-top: 18px;
+  color: var(--muted);
+  font-size: 0.875rem;
+  font-weight: 300;
+}
+
+.guard-input-label textarea {
+  width: 100%;
+  margin-top: 8px;
+  padding: 14px 16px;
+  border: 1px solid var(--hairline);
+  border-radius: 0;
+  color: var(--ink);
+  background: var(--canvas);
+  font: inherit;
+  font-weight: 300;
+  line-height: 1.55;
+  resize: vertical;
+}
+
+.guard-input-label textarea:focus {
+  border-color: var(--ink);
+  outline: none;
+}
+
+.guard-result {
+  margin-top: 16px;
+  padding: 16px;
+  border: 1px solid var(--hairline);
+  color: var(--body);
+  background: var(--surface-card);
+  font-size: 0.95rem;
+  font-weight: 300;
+  line-height: 1.55;
+}
+
+.guard-result.is-safe {
+  border-color: var(--success);
+  color: #166534;
+  background: #f0fdf4;
+}
+
+.guard-result.is-blocked {
+  border-color: var(--error);
+  color: #7f1d1d;
+  background: #fef2f2;
+}
+
+.guard-result.is-checking {
+  border-color: var(--primary);
+  color: var(--primary-active);
+  background: #eff6ff;
 }
 
 .toggle-row {

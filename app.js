@@ -167,11 +167,13 @@ function renderHourglass(progress) {
   const pileProgress = progress / 100;
   const topSurfaceLeftY = 50 + (HOURGLASS_SAND_HEIGHT - topHeight) * 0.78;
   const topSurfaceRightY = topSurfaceLeftY + 8;
-  const pileBaseHalfWidth = 6 + 50 * pileProgress;
+  const pileBaseHalfWidth = 12 + 52 * pileProgress;
   const pilePeakY = 248 - bottomHeight * 0.78;
   const pileLeftX = 120 - pileBaseHalfWidth;
   const pileRightX = 120 + pileBaseHalfWidth;
   const ridgeY = pilePeakY + Math.max(bottomHeight * 0.18, 1);
+  const pileShoulderY = 248 - bottomHeight * 0.34;
+  const pileSideY = 246 - bottomHeight * 0.12;
 
   elements.hourglassSandTop.setAttribute(
     "d",
@@ -189,13 +191,13 @@ function renderHourglass(progress) {
     "d",
     bottomHeight < 1
       ? "M120 248L120 248L120 248Z"
-      : `M${pileLeftX} 244 C${pileLeftX + 12} ${248 - bottomHeight * 0.18} ${120 - 22} ${ridgeY} 120 ${pilePeakY} C${120 + 22} ${ridgeY} ${pileRightX - 12} ${248 - bottomHeight * 0.18} ${pileRightX} 244 C${pileRightX - 12} 252 ${pileLeftX + 12} 252 ${pileLeftX} 244 Z`,
+      : `M${pileLeftX} ${pileSideY} C${pileLeftX - 8} ${pileShoulderY} ${120 - 34} ${ridgeY} 120 ${pilePeakY} C${120 + 34} ${ridgeY} ${pileRightX + 8} ${pileShoulderY} ${pileRightX} ${pileSideY} C${pileRightX - 14} 252 ${pileLeftX + 14} 252 ${pileLeftX} ${pileSideY} Z`,
   );
   elements.hourglassSandRidge.setAttribute(
     "d",
     bottomHeight < 1
       ? "M120 248L120 248"
-      : `M${pileLeftX + 9} ${248 - bottomHeight * 0.16} C${120 - 22} ${ridgeY + 4} ${120 - 10} ${pilePeakY + 2} 120 ${pilePeakY} C${120 + 10} ${pilePeakY + 2} ${120 + 22} ${ridgeY + 4} ${pileRightX - 9} ${248 - bottomHeight * 0.16}`,
+      : `M${pileLeftX + 10} ${pileSideY - 2} C${120 - 28} ${ridgeY + 6} ${120 - 12} ${pilePeakY + 3} 120 ${pilePeakY} C${120 + 12} ${pilePeakY + 3} ${120 + 28} ${ridgeY + 6} ${pileRightX - 10} ${pileSideY - 2}`,
   );
   elements.hourglassStream.setAttribute("y2", Math.max(pilePeakY, 148).toString());
   elements.hourglassStream.style.opacity = progress >= 100 ? "0" : "1";

@@ -3,6 +3,7 @@ const elements = {
   timerDisplay: document.querySelector("#timer-display"),
   hourglassTimer: document.querySelector(".hourglass-timer"),
   hourglassSandTop: document.querySelector("#hourglass-sand-top"),
+  hourglassSandTopRidge: document.querySelector("#hourglass-sand-top-ridge"),
   hourglassSandBottom: document.querySelector("#hourglass-sand-bottom"),
   hourglassSandRidge: document.querySelector("#hourglass-sand-ridge"),
   hourglassStream: document.querySelector("#hourglass-stream"),
@@ -34,7 +35,7 @@ const elements = {
 const HISTORY_STORAGE_KEY = "time-control-history";
 const INTERNET_STORAGE_KEY = "time-control-internet";
 const DEFAULT_INTERNET_LIMIT_MINUTES = 120;
-const HOURGLASS_SAND_HEIGHT = 80;
+const HOURGLASS_SAND_HEIGHT = 92;
 
 let mode = "focus";
 let totalSeconds = getMinutes(elements.focusMinutes) * 60;
@@ -164,23 +165,39 @@ function renderHourglass(progress) {
   const topHeight = Math.max(HOURGLASS_SAND_HEIGHT * (1 - progress / 100), 0);
   const bottomHeight = Math.min(HOURGLASS_SAND_HEIGHT * (progress / 100), HOURGLASS_SAND_HEIGHT);
   const pileProgress = progress / 100;
-  const pileBaseHalfWidth = 4 + 36 * pileProgress;
-  const pilePeakY = 238 - bottomHeight * 0.86;
+  const topSurfaceLeftY = 50 + (HOURGLASS_SAND_HEIGHT - topHeight) * 0.78;
+  const topSurfaceRightY = topSurfaceLeftY + 8;
+  const pileBaseHalfWidth = 6 + 50 * pileProgress;
+  const pilePeakY = 248 - bottomHeight * 0.78;
   const pileLeftX = 120 - pileBaseHalfWidth;
   const pileRightX = 120 + pileBaseHalfWidth;
   const ridgeY = pilePeakY + Math.max(bottomHeight * 0.18, 1);
 
-  elements.hourglassSandTop.setAttribute("y", (42 + HOURGLASS_SAND_HEIGHT - topHeight).toString());
-  elements.hourglassSandTop.setAttribute("height", topHeight.toString());
+  elements.hourglassSandTop.setAttribute(
+    "d",
+    topHeight < 1
+      ? "M120 136L120 136L120 136Z"
+      : `M64 ${topSurfaceLeftY} C86 ${topSurfaceLeftY - 7} 116 ${topSurfaceRightY + 5} 176 ${topSurfaceRightY} C166 101 141 121 120 136 C99 121 74 101 64 ${topSurfaceLeftY} Z`,
+  );
+  elements.hourglassSandTopRidge.setAttribute(
+    "d",
+    topHeight < 1
+      ? "M120 136L120 136"
+      : `M64 ${topSurfaceLeftY} C86 ${topSurfaceLeftY - 7} 116 ${topSurfaceRightY + 5} 176 ${topSurfaceRightY}`,
+  );
   elements.hourglassSandBottom.setAttribute(
     "d",
-    `M${pileLeftX} 238 C${pileLeftX + 8} ${238 - bottomHeight * 0.2} ${120 - 18} ${ridgeY} 120 ${pilePeakY} C${120 + 18} ${ridgeY} ${pileRightX - 8} ${238 - bottomHeight * 0.2} ${pileRightX} 238 Z`,
+    bottomHeight < 1
+      ? "M120 248L120 248L120 248Z"
+      : `M${pileLeftX} 248 C${pileLeftX + 12} ${248 - bottomHeight * 0.18} ${120 - 22} ${ridgeY} 120 ${pilePeakY} C${120 + 22} ${ridgeY} ${pileRightX - 12} ${248 - bottomHeight * 0.18} ${pileRightX} 248 Z`,
   );
   elements.hourglassSandRidge.setAttribute(
     "d",
-    `M${pileLeftX + 7} ${238 - bottomHeight * 0.18} C${120 - 18} ${ridgeY + 3} ${120 - 9} ${pilePeakY + 2} 120 ${pilePeakY} C${120 + 9} ${pilePeakY + 2} ${120 + 18} ${ridgeY + 3} ${pileRightX - 7} ${238 - bottomHeight * 0.18}`,
+    bottomHeight < 1
+      ? "M120 248L120 248"
+      : `M${pileLeftX + 9} ${248 - bottomHeight * 0.16} C${120 - 22} ${ridgeY + 4} ${120 - 10} ${pilePeakY + 2} 120 ${pilePeakY} C${120 + 10} ${pilePeakY + 2} ${120 + 22} ${ridgeY + 4} ${pileRightX - 9} ${248 - bottomHeight * 0.16}`,
   );
-  elements.hourglassStream.setAttribute("y2", Math.max(pilePeakY, 154).toString());
+  elements.hourglassStream.setAttribute("y2", Math.max(pilePeakY, 148).toString());
   elements.hourglassStream.style.opacity = progress >= 100 ? "0" : "1";
   elements.hourglassTimer.classList.toggle("is-running", Boolean(timerId) && progress < 100);
 }

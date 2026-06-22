@@ -44,26 +44,32 @@
         <div class="hourglass-timer" aria-live="polite">
           <svg class="hourglass-face" viewBox="0 0 240 280" role="img" aria-labelledby="hourglass-label">
             <title id="hourglass-label">남은 시간을 보여주는 모래시계형 타이머</title>
-            <path class="hourglass-frame" d="M64 24H176M64 256H176M74 24C74 76 104 100 120 126C136 100 166 76 166 24M74 256C74 204 104 180 120 154C136 180 166 204 166 256" />
+            <path class="hourglass-shadow" d="M70 260C82 270 158 270 170 260" />
+            <path class="hourglass-glass-fill" d="M65 24C33 24 31 82 56 109C72 127 102 132 112 139C102 146 72 151 56 169C31 196 33 256 65 256H175C207 256 209 196 184 169C168 151 138 146 128 139C138 132 168 127 184 109C209 82 207 24 175 24H65Z" />
             <clipPath id="top-sand-clip">
-              <path d="M84 42H156C152 79 134 100 120 122C106 100 88 79 84 42Z" />
+              <path d="M65 32C39 33 42 82 62 104C79 122 105 128 120 136C135 128 161 122 178 104C198 82 201 33 175 32H65Z" />
             </clipPath>
             <clipPath id="bottom-sand-clip">
-              <path d="M84 238H156C152 201 134 180 120 158C106 180 88 201 84 238Z" />
+              <path d="M65 248C39 247 42 198 62 176C79 158 105 152 120 144C135 152 161 158 178 176C198 198 201 247 175 248H65Z" />
             </clipPath>
-            <rect class="hourglass-sand-top" id="hourglass-sand-top" x="84" y="42" width="72" height="80" clip-path="url(#top-sand-clip)" />
-            <path class="hourglass-sand-bottom" id="hourglass-sand-bottom" d="M120 238L120 238L120 238Z" clip-path="url(#bottom-sand-clip)" />
-            <path class="hourglass-sand-ridge" id="hourglass-sand-ridge" d="M120 238L120 238" clip-path="url(#bottom-sand-clip)" />
-            <line class="hourglass-stream" id="hourglass-stream" x1="120" y1="126" x2="120" y2="238" />
+            <path class="hourglass-sand-top" id="hourglass-sand-top" d="M120 136L120 136L120 136Z" clip-path="url(#top-sand-clip)" />
+            <path class="hourglass-sand-top-ridge" id="hourglass-sand-top-ridge" d="M120 136L120 136" clip-path="url(#top-sand-clip)" />
+            <path class="hourglass-sand-bottom" id="hourglass-sand-bottom" d="M120 248L120 248L120 248Z" clip-path="url(#bottom-sand-clip)" />
+            <path class="hourglass-sand-ridge" id="hourglass-sand-ridge" d="M120 248L120 248" clip-path="url(#bottom-sand-clip)" />
+            <line class="hourglass-stream" id="hourglass-stream" x1="120" y1="136" x2="120" y2="248" />
             <g class="hourglass-grains" id="hourglass-grains" aria-hidden="true">
-              <circle class="hourglass-grain grain-one" cx="120" cy="128" r="2.2" />
-              <circle class="hourglass-grain grain-two" cx="118" cy="128" r="1.7" />
-              <circle class="hourglass-grain grain-three" cx="122" cy="128" r="1.9" />
-              <circle class="hourglass-grain grain-four" cx="119" cy="128" r="1.4" />
-              <circle class="hourglass-grain grain-five" cx="121" cy="128" r="1.6" />
-              <circle class="hourglass-grain grain-six" cx="120" cy="128" r="1.2" />
+              <circle class="hourglass-grain grain-one" cx="120" cy="138" r="2.2" />
+              <circle class="hourglass-grain grain-two" cx="118" cy="138" r="1.7" />
+              <circle class="hourglass-grain grain-three" cx="122" cy="138" r="1.9" />
+              <circle class="hourglass-grain grain-four" cx="119" cy="138" r="1.4" />
+              <circle class="hourglass-grain grain-five" cx="121" cy="138" r="1.6" />
+              <circle class="hourglass-grain grain-six" cx="120" cy="138" r="1.2" />
             </g>
-            <path class="hourglass-glass" d="M84 42H156C152 79 134 100 120 122C106 100 88 79 84 42ZM84 238H156C152 201 134 180 120 158C106 180 88 201 84 238Z" />
+            <path class="hourglass-glass" d="M65 24C33 24 31 82 56 109C72 127 102 132 112 139C102 146 72 151 56 169C31 196 33 256 65 256H175C207 256 209 196 184 169C168 151 138 146 128 139C138 132 168 127 184 109C209 82 207 24 175 24H65Z" />
+            <path class="hourglass-neck-highlight" d="M112 138C116 141 124 141 128 138" />
+            <path class="hourglass-highlight highlight-left" d="M70 44C51 58 52 94 70 111" />
+            <path class="hourglass-highlight highlight-top" d="M86 38C112 30 150 32 169 45" />
+            <path class="hourglass-highlight highlight-bottom" d="M57 210C59 238 84 249 116 247" />
           </svg>
           <div class="timer-display" id="timer-display">25:00</div>
         </div>

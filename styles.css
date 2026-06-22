@@ -255,29 +255,46 @@ h2 {
   height: auto;
 }
 
-.hourglass-frame {
+.hourglass-shadow {
   fill: none;
-  stroke: var(--ink);
+  stroke: rgba(0, 0, 0, 0.18);
   stroke-width: 8;
-  stroke-linecap: square;
-  stroke-linejoin: miter;
+  stroke-linecap: round;
+}
+
+.hourglass-glass-fill {
+  fill: rgba(255, 255, 255, 0.42);
+}
+
+.hourglass-frame {
+  display: none;
 }
 
 .hourglass-glass {
-  fill: rgba(255, 255, 255, 0.52);
-  stroke: var(--hairline-strong);
-  stroke-width: 2;
+  fill: none;
+  stroke: rgba(60, 60, 60, 0.34);
+  stroke-width: 2.4;
+  stroke-linejoin: round;
 }
 
 .hourglass-sand-top {
   fill: var(--sand);
-  transition:
-    height 0.25s ease,
-    y 0.25s ease;
+  opacity: 0.94;
+  transition: d 0.25s ease;
+}
+
+.hourglass-sand-top-ridge {
+  fill: none;
+  stroke: #7f7200;
+  stroke-width: 2;
+  stroke-linecap: round;
+  opacity: 0.38;
+  transition: d 0.25s ease;
 }
 
 .hourglass-sand-bottom {
   fill: var(--sand);
+  opacity: 0.94;
   transition: d 0.25s ease;
 }
 
@@ -292,8 +309,8 @@ h2 {
 
 .hourglass-stream {
   stroke: var(--sand);
-  stroke-width: 3;
-  stroke-linecap: square;
+  stroke-width: 2.4;
+  stroke-linecap: round;
   transition:
     opacity 0.2s ease,
     y2 0.25s ease;
@@ -361,7 +378,7 @@ h2 {
   }
 
   54% {
-    transform: translate(0, 56px) scale(0.82);
+    transform: translate(0, 62px) scale(0.82);
   }
 
   78% {
@@ -370,7 +387,7 @@ h2 {
 
   100% {
     opacity: 0;
-    transform: translate(0, 108px) scale(1);
+    transform: translate(0, 100px) scale(1);
   }
 }
 
@@ -385,12 +402,12 @@ h2 {
   }
 
   58% {
-    transform: translate(-4px, 62px) scale(0.78);
+    transform: translate(-4px, 66px) scale(0.78);
   }
 
   100% {
     opacity: 0;
-    transform: translate(-13px, 108px) scale(1);
+    transform: translate(-16px, 100px) scale(1);
   }
 }
 
@@ -405,12 +422,12 @@ h2 {
   }
 
   58% {
-    transform: translate(4px, 62px) scale(0.78);
+    transform: translate(4px, 66px) scale(0.78);
   }
 
   100% {
     opacity: 0;
-    transform: translate(13px, 108px) scale(1);
+    transform: translate(16px, 100px) scale(1);
   }
 }
 
@@ -422,9 +439,30 @@ h2 {
   }
 
   50% {
-    stroke-width: 5;
+    stroke-width: 3.8;
     opacity: 1;
   }
+}
+
+.hourglass-highlight,
+.hourglass-neck-highlight {
+  fill: none;
+  stroke: rgba(255, 255, 255, 0.74);
+  stroke-linecap: round;
+}
+
+.hourglass-highlight {
+  stroke-width: 5;
+}
+
+.hourglass-neck-highlight {
+  stroke-width: 2.5;
+  opacity: 0.72;
+}
+
+.highlight-bottom {
+  stroke-width: 4;
+  opacity: 0.58;
 }
 
 .timer-display {

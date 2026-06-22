@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>학술 보고서 메일러</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <main class="page">
+      <section class="hero">
+        <p class="eyebrow">DBpia + Google Scholar</p>
+        <h1>키워드만 입력하면 학술 검색 보고서를 이메일로 보냅니다.</h1>
+        <p class="description">
+          DBpia OpenAPI와 Google Scholar 호환 API를 활용해 논문 검색 결과를 모으고,
+          핵심 요약과 출처 목록을 포함한 보고서를 생성합니다.
+        </p>
+      </section>
+
+      <section class="panel">
+        <form id="report-form" class="form">
+          <label>
+            검색 키워드
+            <input id="keyword" name="keyword" type="text" placeholder="예: 생성형 AI 교육" required minlength="2" />
+          </label>
+
+          <label>
+            받을 이메일
+            <input id="email" name="email" type="email" placeholder="name@example.com" required />
+          </label>
+
+          <button id="submit-button" type="submit">보고서 생성 및 발송</button>
+        </form>
+
+        <p id="status" class="status" aria-live="polite"></p>
+      </section>
+
+      <section id="report" class="report hidden"></section>
+    </main>
+
+    <script src="/app.js" defer></script>
+  </body>
+</html>

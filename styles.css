@@ -299,13 +299,15 @@ h2 {
   fill: url(#sand-3d);
   opacity: 0.94;
   transition: d 0.25s ease;
+  stroke-linejoin: round;
 }
 
 .hourglass-sand-ridge {
   fill: none;
   stroke: #7f7200;
   stroke-width: 2;
-  stroke-linecap: square;
+  stroke-linecap: round;
+  stroke-linejoin: round;
   opacity: 0.42;
   transition: d 0.25s ease;
 }

@@ -189,7 +189,7 @@ function renderHourglass(progress) {
     "d",
     bottomHeight < 1
       ? "M120 248L120 248L120 248Z"
-      : `M${pileLeftX} 248 C${pileLeftX + 12} ${248 - bottomHeight * 0.18} ${120 - 22} ${ridgeY} 120 ${pilePeakY} C${120 + 22} ${ridgeY} ${pileRightX - 12} ${248 - bottomHeight * 0.18} ${pileRightX} 248 Z`,
+      : `M${pileLeftX} 244 C${pileLeftX + 12} ${248 - bottomHeight * 0.18} ${120 - 22} ${ridgeY} 120 ${pilePeakY} C${120 + 22} ${ridgeY} ${pileRightX - 12} ${248 - bottomHeight * 0.18} ${pileRightX} 244 C${pileRightX - 12} 252 ${pileLeftX + 12} 252 ${pileLeftX} 244 Z`,
   );
   elements.hourglassSandRidge.setAttribute(
     "d",

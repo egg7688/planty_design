@@ -17,11 +17,11 @@ loginForm.addEventListener("submit", async (event) => {
   const formData = new FormData(loginForm);
   const payload = {
     email: formData.get("email"),
-    accessCode: formData.get("accessCode")
+    dbpiaLoginConfirmed: formData.get("dbpiaLoginConfirmed") === "on"
   };
 
   setLoginLoading(true);
-  setLoginStatus("유료 접근 권한을 확인하는 중입니다...");
+  setLoginStatus("DBpia 로그인 완료 여부를 확인하는 중입니다...");
 
   try {
     const response = await fetch("/api/login", {
@@ -32,12 +32,12 @@ loginForm.addEventListener("submit", async (event) => {
 
     const data = await response.json();
     if (!response.ok) {
-      throw new Error(data.message || "유료 로그인에 실패했습니다.");
+      throw new Error(data.message || "DBpia 로그인 확인에 실패했습니다.");
     }
 
     localStorage.setItem("premiumSession", JSON.stringify(data));
     unlockReportForm(data.user);
-    setLoginStatus(`${data.user.email} 계정으로 유료 로그인이 완료되었습니다.`);
+    setLoginStatus(`${data.user.email} 계정으로 DBpia 로그인 확인이 완료되었습니다.`);
   } catch (error) {
     localStorage.removeItem("premiumSession");
     submitButton.disabled = true;
@@ -155,7 +155,7 @@ function setLoading(isLoading) {
 
 function setLoginLoading(isLoading) {
   loginButton.disabled = isLoading;
-  loginButton.textContent = isLoading ? "로그인 중..." : "유료 로그인";
+  loginButton.textContent = isLoading ? "확인 중..." : "로그인 완료 후 계속";
 }
 
 function setStatus(message, isError = false) {

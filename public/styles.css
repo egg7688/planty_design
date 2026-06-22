@@ -127,9 +127,38 @@ button {
   box-shadow: 0 16px 34px rgba(74, 108, 247, 0.25);
 }
 
+.external-login {
+  display: inline-flex;
+  width: fit-content;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #cfd8ea;
+  border-radius: 16px;
+  padding: 14px 18px;
+  color: #3153d4;
+  font-weight: 800;
+  background: #fff;
+  text-decoration: none;
+}
+
 button:disabled {
   cursor: wait;
   opacity: 0.68;
+}
+
+.checkbox-label {
+  display: flex;
+  min-height: 52px;
+  align-items: center;
+  gap: 10px;
+  border: 1px solid #d9e1ef;
+  border-radius: 16px;
+  padding: 12px 14px;
+  background: #fff;
+}
+
+.checkbox-label input {
+  width: auto;
 }
 
 .status {

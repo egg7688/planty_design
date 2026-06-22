@@ -17,14 +17,15 @@ app.post("/api/login", async (req, res) => {
   try {
     const session = await createPremiumSession({
       email: req.body?.email,
-      accessCode: req.body?.accessCode
+      accessCode: req.body?.accessCode,
+      dbpiaLoginConfirmed: req.body?.dbpiaLoginConfirmed === true
     });
 
     res.json(session);
   } catch (error) {
     console.error(error);
     res.status(error.status || 500).json({
-      message: error.message || "유료 로그인 중 오류가 발생했습니다."
+      message: error.message || "DBpia 로그인 확인 중 오류가 발생했습니다."
     });
   }
 });

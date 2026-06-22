@@ -44,8 +44,37 @@
         <div class="hourglass-timer" aria-live="polite">
           <svg class="hourglass-face" viewBox="0 0 240 280" role="img" aria-labelledby="hourglass-label">
             <title id="hourglass-label">남은 시간을 보여주는 모래시계형 타이머</title>
+            <defs>
+              <linearGradient id="glass-fill-3d" x1="40" y1="32" x2="200" y2="248" gradientUnits="userSpaceOnUse">
+                <stop offset="0" stop-color="#ffffff" stop-opacity="0.82" />
+                <stop offset="0.42" stop-color="#ffffff" stop-opacity="0.22" />
+                <stop offset="0.72" stop-color="#cfd8dc" stop-opacity="0.18" />
+                <stop offset="1" stop-color="#6b7280" stop-opacity="0.24" />
+              </linearGradient>
+              <linearGradient id="glass-stroke-3d" x1="42" y1="22" x2="198" y2="258" gradientUnits="userSpaceOnUse">
+                <stop offset="0" stop-color="#ffffff" stop-opacity="0.95" />
+                <stop offset="0.45" stop-color="#9ca3af" stop-opacity="0.54" />
+                <stop offset="1" stop-color="#111827" stop-opacity="0.34" />
+              </linearGradient>
+              <linearGradient id="sand-3d" x1="62" y1="52" x2="178" y2="248" gradientUnits="userSpaceOnUse">
+                <stop offset="0" stop-color="#d6c53a" />
+                <stop offset="0.48" stop-color="#b09f04" />
+                <stop offset="0.78" stop-color="#8f7f02" />
+                <stop offset="1" stop-color="#6e6100" />
+              </linearGradient>
+              <radialGradient id="sand-highlight-3d" cx="38%" cy="32%" r="70%">
+                <stop offset="0" stop-color="#f2e46b" stop-opacity="0.65" />
+                <stop offset="0.45" stop-color="#b09f04" stop-opacity="0.18" />
+                <stop offset="1" stop-color="#6e6100" stop-opacity="0" />
+              </radialGradient>
+              <filter id="hourglass-soft-shadow" x="-25%" y="-15%" width="150%" height="130%">
+                <feDropShadow dx="0" dy="8" stdDeviation="7" flood-color="#000000" flood-opacity="0.24" />
+              </filter>
+            </defs>
             <path class="hourglass-shadow" d="M70 260C82 270 158 270 170 260" />
             <path class="hourglass-glass-fill" d="M65 24C33 24 31 82 56 109C72 127 102 132 112 139C102 146 72 151 56 169C31 196 33 256 65 256H175C207 256 209 196 184 169C168 151 138 146 128 139C138 132 168 127 184 109C209 82 207 24 175 24H65Z" />
+            <path class="hourglass-side-shade shade-right" d="M157 32C189 42 194 82 173 107C157 126 132 132 124 139C132 146 157 152 173 173C194 199 189 238 157 248C188 249 204 220 192 190C183 168 155 151 136 140C155 129 183 111 192 89C204 58 188 31 157 32Z" />
+            <path class="hourglass-side-shade shade-left" d="M78 35C52 48 49 82 67 105C82 124 105 130 116 139C105 148 82 155 67 175C49 198 52 232 78 245C51 239 39 210 50 184C60 162 86 151 105 140C86 129 60 118 50 96C39 69 51 42 78 35Z" />
             <clipPath id="top-sand-clip">
               <path d="M65 32C39 33 42 82 62 104C79 122 105 128 120 136C135 128 161 122 178 104C198 82 201 33 175 32H65Z" />
             </clipPath>
@@ -70,6 +99,8 @@
             <path class="hourglass-highlight highlight-left" d="M70 44C51 58 52 94 70 111" />
             <path class="hourglass-highlight highlight-top" d="M86 38C112 30 150 32 169 45" />
             <path class="hourglass-highlight highlight-bottom" d="M57 210C59 238 84 249 116 247" />
+            <path class="hourglass-specular specular-top" d="M77 57C93 47 130 43 154 52" />
+            <path class="hourglass-specular specular-right" d="M174 55C187 75 181 96 165 111" />
           </svg>
           <div class="timer-display" id="timer-display">25:00</div>
         </div>

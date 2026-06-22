@@ -247,6 +247,7 @@ h2 {
   display: grid;
   width: min(100%, 320px);
   margin: 32px auto 24px;
+  filter: drop-shadow(0 18px 18px rgba(0, 0, 0, 0.14));
   place-items: center;
 }
 
@@ -257,13 +258,15 @@ h2 {
 
 .hourglass-shadow {
   fill: none;
-  stroke: rgba(0, 0, 0, 0.18);
-  stroke-width: 8;
+  stroke: rgba(0, 0, 0, 0.22);
+  stroke-width: 10;
   stroke-linecap: round;
+  filter: blur(1px);
 }
 
 .hourglass-glass-fill {
-  fill: rgba(255, 255, 255, 0.42);
+  fill: url(#glass-fill-3d);
+  filter: url(#hourglass-soft-shadow);
 }
 
 .hourglass-frame {
@@ -272,13 +275,13 @@ h2 {
 
 .hourglass-glass {
   fill: none;
-  stroke: rgba(60, 60, 60, 0.34);
-  stroke-width: 2.4;
+  stroke: url(#glass-stroke-3d);
+  stroke-width: 3;
   stroke-linejoin: round;
 }
 
 .hourglass-sand-top {
-  fill: var(--sand);
+  fill: url(#sand-3d);
   opacity: 0.94;
   transition: d 0.25s ease;
 }
@@ -293,7 +296,7 @@ h2 {
 }
 
 .hourglass-sand-bottom {
-  fill: var(--sand);
+  fill: url(#sand-3d);
   opacity: 0.94;
   transition: d 0.25s ease;
 }
@@ -311,6 +314,7 @@ h2 {
   stroke: var(--sand);
   stroke-width: 2.4;
   stroke-linecap: round;
+  filter: drop-shadow(0 0 2px rgba(176, 159, 4, 0.48));
   transition:
     opacity 0.2s ease,
     y2 0.25s ease;
@@ -321,7 +325,8 @@ h2 {
 }
 
 .hourglass-grain {
-  fill: var(--sand);
+  fill: #d6c53a;
+  filter: drop-shadow(0 1px 1px rgba(110, 97, 0, 0.32));
   transform-box: fill-box;
   transform-origin: center;
 }
@@ -445,7 +450,8 @@ h2 {
 }
 
 .hourglass-highlight,
-.hourglass-neck-highlight {
+.hourglass-neck-highlight,
+.hourglass-specular {
   fill: none;
   stroke: rgba(255, 255, 255, 0.74);
   stroke-linecap: round;
@@ -463,6 +469,29 @@ h2 {
 .highlight-bottom {
   stroke-width: 4;
   opacity: 0.58;
+}
+
+.hourglass-side-shade {
+  fill: rgba(17, 24, 39, 0.1);
+  mix-blend-mode: multiply;
+}
+
+.shade-left {
+  opacity: 0.14;
+}
+
+.shade-right {
+  opacity: 0.34;
+}
+
+.hourglass-specular {
+  stroke-width: 3;
+  opacity: 0.76;
+}
+
+.specular-right {
+  stroke-width: 4;
+  opacity: 0.45;
 }
 
 .timer-display {

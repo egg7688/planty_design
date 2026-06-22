@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#1c69d4" />
+    <title>시간 제어</title>
+    <link rel="manifest" href="manifest.json" />
+    <link rel="icon" href="icon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="top-nav" aria-label="주요 메뉴">
+      <a class="brand-mark" href="#" aria-label="시간 제어 홈">TIME</a>
+      <nav>
+        <a href="#timer-title">집중</a>
+        <a href="#internet-title">인터넷</a>
+        <a href="#calendar-title">달력</a>
+        <a href="#history-title">기록</a>
+      </nav>
+    </header>
+
+    <main class="app-shell">
+      <section class="hero">
+        <p class="eyebrow">모바일 시간 관리</p>
+        <h1>오늘의 시간을 직접 제어하세요</h1>
+        <p class="description">
+          집중 시간과 휴식 시간을 정하고, 타이머를 실행해 핸드폰에서도 간단하게
+          루틴을 관리할 수 있습니다.
+        </p>
+        <a class="hero-link" href="#timer-title">시작하기 ›</a>
+      </section>
+
+      <section class="timer-card" aria-labelledby="timer-title">
+        <div class="timer-header">
+          <div>
+            <p class="phase-label" id="phase-label">준비</p>
+            <h2 id="timer-title">집중 타이머</h2>
+          </div>
+          <button class="ghost-button" id="reset-button" type="button">초기화</button>
+        </div>
+
+        <div class="hourglass-timer" aria-live="polite">
+          <svg class="hourglass-face" viewBox="0 0 240 280" role="img" aria-labelledby="hourglass-label">
+            <title id="hourglass-label">남은 시간을 보여주는 모래시계형 타이머</title>
+            <path class="hourglass-frame" d="M64 24H176M64 256H176M74 24C74 76 104 100 120 126C136 100 166 76 166 24M74 256C74 204 104 180 120 154C136 180 166 204 166 256" />
+            <clipPath id="top-sand-clip">
+              <path d="M84 42H156C152 79 134 100 120 122C106 100 88 79 84 42Z" />
+            </clipPath>
+            <clipPath id="bottom-sand-clip">
+              <path d="M84 238H156C152 201 134 180 120 158C106 180 88 201 84 238Z" />
+            </clipPath>
+            <rect class="hourglass-sand-top" id="hourglass-sand-top" x="84" y="42" width="72" height="80" clip-path="url(#top-sand-clip)" />
+            <path class="hourglass-sand-bottom" id="hourglass-sand-bottom" d="M120 238L120 238L120 238Z" clip-path="url(#bottom-sand-clip)" />
+            <path class="hourglass-sand-ridge" id="hourglass-sand-ridge" d="M120 238L120 238" clip-path="url(#bottom-sand-clip)" />
+            <line class="hourglass-stream" id="hourglass-stream" x1="120" y1="126" x2="120" y2="238" />
+            <g class="hourglass-grains" id="hourglass-grains" aria-hidden="true">
+              <circle class="hourglass-grain grain-one" cx="120" cy="128" r="2.2" />
+              <circle class="hourglass-grain grain-two" cx="118" cy="128" r="1.7" />
+              <circle class="hourglass-grain grain-three" cx="122" cy="128" r="1.9" />
+              <circle class="hourglass-grain grain-four" cx="119" cy="128" r="1.4" />
+              <circle class="hourglass-grain grain-five" cx="121" cy="128" r="1.6" />
+              <circle class="hourglass-grain grain-six" cx="120" cy="128" r="1.2" />
+            </g>
+            <path class="hourglass-glass" d="M84 42H156C152 79 134 100 120 122C106 100 88 79 84 42ZM84 238H156C152 201 134 180 120 158C106 180 88 201 84 238Z" />
+          </svg>
+          <div class="timer-display" id="timer-display">25:00</div>
+        </div>
+
+        <div class="controls">
+          <button class="primary-button" id="start-button" type="button">시작</button>
+          <button class="secondary-button" id="pause-button" type="button" disabled>
+            일시정지
+          </button>
+        </div>
+      </section>
+
+      <section class="settings-card" aria-labelledby="settings-title">
+        <h2 id="settings-title">시간 설정</h2>
+        <div class="setting-grid">
+          <label>
+            집중 시간
+            <span class="input-row">
+              <input id="focus-minutes" type="number" min="1" max="180" value="25" />
+              <span>분</span>
+            </span>
+          </label>
+          <label>
+            휴식 시간
+            <span class="input-row">
+              <input id="break-minutes" type="number" min="1" max="60" value="5" />
+              <span>분</span>
+            </span>
+          </label>
+        </div>
+        <label class="toggle-row">
+          <input id="auto-break" type="checkbox" checked />
+          집중이 끝나면 자동으로 휴식 시작
+        </label>
+      </section>
+
+      <section class="internet-card" aria-labelledby="internet-title">
+        <div class="timer-header">
+          <div>
+            <p class="phase-label">인터넷 한도</p>
+            <h2 id="internet-title">오늘 사용할 인터넷 시간</h2>
+          </div>
+          <button class="ghost-button" id="internet-reset-button" type="button">오늘 초기화</button>
+        </div>
+
+        <div class="internet-display" id="internet-display" aria-live="polite">02:00:00</div>
+
+        <div class="progress-track" aria-hidden="true">
+          <div class="progress-fill internet-progress" id="internet-progress-fill"></div>
+        </div>
+
+        <div class="setting-grid internet-setting">
+          <label>
+            하루 인터넷 한도
+            <span class="input-row">
+              <input id="internet-limit-minutes" type="number" min="1" max="1440" value="120" />
+              <span>분</span>
+            </span>
+          </label>
+        </div>
+
+        <div class="controls">
+          <button class="primary-button" id="internet-start-button" type="button">
+            인터넷 사용 시작
+          </button>
+          <button class="secondary-button" id="internet-stop-button" type="button" disabled>
+            사용 중지
+          </button>
+        </div>
+        <p class="helper-text" id="internet-status">
+          인터넷을 사용할 때 시작을 누르면 오늘 남은 시간을 추적합니다.
+        </p>
+      </section>
+
+      <section class="calendar-card" aria-labelledby="calendar-title">
+        <div class="history-header">
+          <div>
+            <p class="phase-label">집중 캘린더</p>
+            <h2 id="calendar-title">월별 집중 시간</h2>
+          </div>
+          <div class="month-controls">
+            <button class="ghost-button compact-button" id="prev-month-button" type="button">이전</button>
+            <button class="ghost-button compact-button" id="next-month-button" type="button">다음</button>
+          </div>
+        </div>
+        <p class="calendar-month" id="calendar-month">2026년 6월</p>
+        <div class="calendar-weekdays" aria-hidden="true">
+          <span>일</span>
+          <span>월</span>
+          <span>화</span>
+          <span>수</span>
+          <span>목</span>
+          <span>금</span>
+          <span>토</span>
+        </div>
+        <div class="calendar-grid" id="calendar-grid" aria-label="집중 시간 달력"></div>
+      </section>
+
+      <section class="history-card" aria-labelledby="history-title">
+        <div class="history-header">
+          <h2 id="history-title">오늘 기록</h2>
+          <span id="session-count">0회 완료</span>
+        </div>
+        <ul id="history-list">
+          <li class="empty-state">아직 완료한 시간이 없습니다.</li>
+        </ul>
+      </section>
+    </main>
+
+    <script src="app.js" defer></script>
+  </body>
+</html>

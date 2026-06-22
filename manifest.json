@@ -1,0 +1,18 @@
+{
+  "name": "시간 제어",
+  "short_name": "시간제어",
+  "description": "핸드폰에서 집중 시간과 휴식 시간을 관리하는 간단한 타이머 앱",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#1c69d4",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

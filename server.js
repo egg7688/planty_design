@@ -319,8 +319,10 @@ function escapeHtml(value) {
     .replaceAll("'", "&#039;");
 }
 
-const server = app.listen(PORT, () => {
-  console.log(`Academic report mailer running at http://localhost:${PORT}`);
-});
+if (require.main === module) {
+  app.listen(PORT, () => {
+    console.log(`Academic report mailer running at http://localhost:${PORT}`);
+  });
+}
 
-module.exports = { app, server };
+module.exports = app;

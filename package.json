@@ -1,7 +1,7 @@
 {
   "name": "academic-report-mailer",
   "version": "1.0.0",
-  "description": "Keyword-based academic report generator using DBpia and Google Scholar-compatible APIs.",
+  "description": "Keyword-based academic report generator using DBpia OpenAPI.",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",

@@ -3,46 +3,51 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>학술 보고서 메일러</title>
+    <title>학술 검색 보고서 생성</title>
     <link rel="stylesheet" href="/styles.css" />
   </head>
   <body>
     <main class="page">
       <section class="hero">
-        <p class="eyebrow">DBpia + Google Scholar</p>
-        <h1>DBpia 로그인 후 학술 검색 보고서를 생성합니다.</h1>
+        <p class="eyebrow">DBpia</p>
+        <h1>학술 검색 보고서 생성</h1>
         <p class="description">
-          DBpia 사이트에서 직접 로그인한 뒤 앱으로 돌아오면 DBpia OpenAPI와 Google Scholar 호환 API에서
+          DBpia에서 소속 기관/학교 인증을 완료한 뒤 앱으로 돌아오면 DBpia OpenAPI에서
           검색 결과를 모으고 AI 요약 또는 규칙형 요약으로 레포트를 생성합니다.
         </p>
       </section>
 
       <section class="panel auth-panel">
         <div>
-          <p class="eyebrow">DBpia Login</p>
-          <h2>DBpia에서 로그인하고 돌아오기</h2>
+          <p class="eyebrow">DBpia Institution Login</p>
+          <h2>DBpia 기관인증 후 돌아오기</h2>
           <p class="description small">
-            아래 버튼으로 DBpia 로그인 페이지를 새 탭에서 열고, 로그인 완료 후 이 앱으로 돌아와 확인을 누르세요.
-            이 앱은 DBpia 비밀번호를 저장하지 않으며 공식 API로 조회 가능한 검색 결과를 요약합니다.
+            기관 내부 PC/Wi-Fi에서 DBpia에 접속하거나, DBpia의 소속 기관/학교 인증 또는 도서관 홈페이지를 통해
+            기관인증을 완료한 뒤 이 앱으로 돌아와 확인을 누르세요. 이 앱은 기관 계정 비밀번호를 저장하지 않습니다.
           </p>
         </div>
 
-        <a class="external-login" href="https://www.dbpia.co.kr/member/login" target="_blank" rel="noreferrer">
-          DBpia 로그인 페이지 열기
-        </a>
+        <div class="external-actions">
+          <a class="external-login" href="https://www.dbpia.co.kr/" target="_blank" rel="noreferrer">
+            DBpia 기관인증 열기
+          </a>
+          <a class="external-login secondary" href="https://www.dbpia.co.kr/faq/faqView?fbId=23" target="_blank" rel="noreferrer">
+            기관인증 방법 보기
+          </a>
+        </div>
 
         <form id="login-form" class="form">
           <label>
-            DBpia 로그인 이메일
+            기관인증 확인 이메일
             <input id="login-email" name="email" type="email" placeholder="name@example.com" required />
           </label>
 
           <label class="checkbox-label">
             <input id="dbpia-confirmed" name="dbpiaLoginConfirmed" type="checkbox" required />
-            DBpia에서 로그인하고 이 앱으로 돌아왔습니다.
+            DBpia에서 기관인증을 완료하고 이 앱으로 돌아왔습니다.
           </label>
 
-          <button id="login-button" type="submit">로그인 완료 후 계속</button>
+          <button id="login-button" type="submit">기관인증 완료 후 계속</button>
         </form>
 
         <p id="login-status" class="status" aria-live="polite"></p>
@@ -53,6 +58,11 @@
           <label>
             검색 키워드
             <input id="keyword" name="keyword" type="text" placeholder="예: 생성형 AI 교육" required minlength="2" />
+          </label>
+
+          <label class="wide-field">
+            레포트 주제
+            <input id="report-topic" name="reportTopic" type="text" placeholder="예: 초등 교육에서 생성형 AI 활용 가능성" required minlength="2" />
           </label>
 
           <label>

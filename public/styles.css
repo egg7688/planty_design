@@ -84,9 +84,13 @@ h1 {
 
 .form {
   display: grid;
-  grid-template-columns: 1.2fr 1fr auto;
+  grid-template-columns: 1fr 1.4fr 1fr auto;
   gap: 16px;
   align-items: end;
+}
+
+.wide-field {
+  min-width: 0;
 }
 
 label {
@@ -127,6 +131,12 @@ button {
   box-shadow: 0 16px 34px rgba(74, 108, 247, 0.25);
 }
 
+.external-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
 .external-login {
   display: inline-flex;
   width: fit-content;
@@ -141,9 +151,32 @@ button {
   text-decoration: none;
 }
 
+.external-login.secondary {
+  color: #536179;
+  background: #f8fbff;
+}
+
 button:disabled {
   cursor: wait;
   opacity: 0.68;
+}
+
+.download-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 18px 0;
+}
+
+.download-actions button {
+  padding: 12px 16px;
+}
+
+.secondary-button {
+  color: #3153d4;
+  border: 1px solid #cfd8ea;
+  background: #fff;
+  box-shadow: none;
 }
 
 .checkbox-label {
@@ -199,6 +232,193 @@ button:disabled {
 
 .summary p {
   margin-bottom: 12px;
+}
+
+.opinion-panel {
+  margin: 24px 0 30px;
+  border: 1px solid #cfd9f2;
+  border-radius: 26px;
+  padding: 24px;
+  background: linear-gradient(135deg, #ffffff, #f2f6ff);
+}
+
+.opinion-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+  margin: 16px 0;
+}
+
+.opinion-grid article {
+  border: 1px solid #dfe7f7;
+  border-radius: 20px;
+  padding: 18px;
+  background: #fff;
+}
+
+.opinion-grid article p,
+.opinion-grid article li {
+  color: #4a5873;
+  line-height: 1.68;
+}
+
+.opinion-grid ul {
+  margin: 0;
+  padding-left: 20px;
+}
+
+.opinion-main {
+  grid-column: 1 / -1;
+}
+
+.stance-badge {
+  display: inline-flex;
+  margin-bottom: 12px;
+  border-radius: 999px;
+  padding: 8px 12px;
+  color: #fff;
+  font-size: 0.88rem;
+  font-weight: 900;
+  background: #3153d4;
+}
+
+.opinion-references {
+  margin-top: 16px;
+}
+
+.opinion-references a {
+  color: #3153d4;
+  font-weight: 800;
+  text-decoration: none;
+}
+
+.insights {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+  margin: 24px 0 30px;
+}
+
+.insight-card {
+  border: 1px solid #dbe4f4;
+  border-radius: 22px;
+  padding: 20px;
+  background: #f8fbff;
+}
+
+.insight-card h3 {
+  margin-bottom: 10px;
+}
+
+.insight-card p {
+  margin-bottom: 10px;
+  color: #4a5873;
+  line-height: 1.68;
+}
+
+.presentation-plan {
+  margin: 28px 0 34px;
+}
+
+.presentation-plan > .section-heading {
+  border: 1px solid #d7e0f3;
+  border-radius: 22px;
+  padding: 22px;
+  background: linear-gradient(135deg, #ffffff, #f4f7ff);
+}
+
+.slide-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+  margin-top: 16px;
+}
+
+.slide-card,
+.qna-item {
+  border: 1px solid #e0e7f5;
+  border-radius: 22px;
+  padding: 20px;
+  background: #fff;
+}
+
+.slide-card h4 {
+  margin-bottom: 12px;
+}
+
+.slide-card ul {
+  margin: 0 0 16px;
+  padding-left: 20px;
+  color: #4a5873;
+  line-height: 1.65;
+}
+
+.speaker-note {
+  border-top: 1px solid #edf2ff;
+  padding-top: 14px;
+  color: #58667d;
+  line-height: 1.62;
+}
+
+.qna-list {
+  display: grid;
+  gap: 10px;
+  margin-top: 22px;
+}
+
+.qna-item p:last-child {
+  margin-bottom: 0;
+  color: #4a5873;
+  line-height: 1.62;
+}
+
+.reference-links {
+  margin: 24px 0 30px;
+}
+
+.section-heading h3 {
+  margin-bottom: 14px;
+}
+
+.reference-list {
+  display: grid;
+  gap: 10px;
+}
+
+.reference-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  border: 1px solid #e3e8f3;
+  border-radius: 18px;
+  padding: 14px 16px;
+  background: #fff;
+}
+
+.reference-title {
+  margin-bottom: 4px;
+  font-weight: 800;
+}
+
+.reference-item a,
+.disabled-link {
+  flex: 0 0 auto;
+  border-radius: 999px;
+  padding: 9px 12px;
+  font-size: 0.88rem;
+  font-weight: 800;
+  text-decoration: none;
+}
+
+.reference-item a {
+  color: #fff;
+  background: #3153d4;
+}
+
+.disabled-link {
+  color: #778399;
+  background: #edf2ff;
 }
 
 .stats,
@@ -265,11 +485,19 @@ button:disabled {
 
 @media (max-width: 860px) {
   .form,
+  .opinion-grid,
+  .insights,
+  .slide-list,
   .cards {
     grid-template-columns: 1fr;
   }
 
   button {
     width: 100%;
+  }
+
+  .reference-item {
+    align-items: flex-start;
+    flex-direction: column;
   }
 }

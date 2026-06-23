@@ -9,6 +9,7 @@ module.exports = async function handler(req, res) {
   try {
     const payload = await createAcademicReport({
       keyword: req.body?.keyword,
+      reportTopic: req.body?.reportTopic,
       email: req.body?.email,
       authorization: req.headers.authorization
     });
